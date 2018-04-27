@@ -20,6 +20,7 @@
         <activity android:name=".patterns.observer.ObserverActivity"/>
         <activity android:name=".patterns.strategy.StrategyActivity"/>
         <activity android:name=".patterns.decorator.DecoratorActivity"/>
+        <activity android:name=".patterns.Builder.BuilderActivity"/>
     </application>
 
 </manifest>

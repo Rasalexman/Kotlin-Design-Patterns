@@ -7,6 +7,7 @@ import android.view.View
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import android.content.Intent
+import ru.mincor.kotlindesignpatterns.patterns.Builder.BuilderActivity
 import ru.mincor.kotlindesignpatterns.patterns.decorator.DecoratorActivity
 import ru.mincor.kotlindesignpatterns.patterns.observer.ObserverActivity
 import ru.mincor.kotlindesignpatterns.patterns.strategy.StrategyActivity
@@ -50,6 +51,14 @@ class MainActivity : AppCompatActivity() {
                 button("DECORATOR") {
                     onClick {
                         startActivity(Intent(this@MainActivity, DecoratorActivity::class.java))
+                    }
+                }.lparams(dip(120)) {
+                    topMargin = dip(16)
+                }
+
+                button("BUILDER") {
+                    onClick {
+                        startActivity(Intent(this@MainActivity, BuilderActivity::class.java))
                     }
                 }.lparams(dip(120)) {
                     topMargin = dip(16)
