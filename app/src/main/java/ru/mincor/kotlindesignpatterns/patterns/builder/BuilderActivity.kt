@@ -48,7 +48,6 @@ class BuilderActivity : BackActivity() {
                     id = "alexkillah"
                     nickName = "Alexandr"
                 }
-
             }
         }
 
