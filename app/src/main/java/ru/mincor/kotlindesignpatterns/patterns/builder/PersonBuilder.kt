@@ -6,9 +6,11 @@ package ru.mincor.kotlindesignpatterns.patterns.builder
 
 class PersonBuilder() {
 
-    var jobHolder: PersonJob? = null
-    var personDataHolder: PersonData? = null
-    var socialInfoHolder: SocialInfo? = null
+    private var jobHolder: PersonJob? = null
+    private var personDataHolder: PersonData? = null
+    //private var socialInfoHolder: SocialInfo? = null
+
+    private var socialInfos = mutableListOf<SocialInfo>()
 
     constructor(init: PersonBuilder.() -> Unit) : this() {
         init()
@@ -22,20 +24,26 @@ class PersonBuilder() {
     }
 
     fun personData(init: PersonData.() -> Unit) {
-        // You can put default values to create person data and if input value can be null it replace with default value
+        // You can put default values to create person data
         personDataHolder = object : PersonData {
             override var firstName: String? = ""
             override var secondName: String? = ""
             override var age: Int? = 0
+            override var socialInfos: List<SocialInfo> = listOf()
         }.apply(init)
     }
 
-    fun social(init: SocialInfo.() -> Unit) {
+    fun socials(init:SocialInfos.() -> Unit){
+        socialInfos.addAll(SocialInfos().apply(init))
+    }
+
+    /*fun social(init: SocialInfo.() -> Unit) {
         socialInfoHolder = object : SocialInfo {
             override var network: String? = ""
             override var id: String? = ""
+            override var nickName: String? = ""
         }.apply(init)
-    }
+    }*/
 
     fun build(): IPerson = object : IPerson {
         override var firstName: String? = personDataHolder?.firstName
@@ -45,8 +53,25 @@ class PersonBuilder() {
         override var jobName: String? = jobHolder?.jobName
         override var jobAddress: String? = jobHolder?.jobAddress
 
-        override var network: String? = socialInfoHolder?.network
-        override var id: String? = socialInfoHolder?.id
+        override var socialInfos: List<SocialInfo> = this@PersonBuilder.socialInfos
+    }
+}
+
+class SocialInfoBuilder : SocialInfo {
+    override var network: String? = ""
+    override var id: String? = ""
+    override var nickName: String? = ""
+
+    fun build():SocialInfo = object : SocialInfo {
+        override var network: String? = this@SocialInfoBuilder.network
+        override var id: String? = this@SocialInfoBuilder.id
+        override var nickName: String? = this@SocialInfoBuilder.nickName
+    }
+}
+
+class SocialInfos : ArrayList<SocialInfo>(){
+    fun social(init:SocialInfoBuilder.()->Unit) {
+        add(SocialInfoBuilder().apply(init).build())
     }
 }
 
@@ -59,19 +84,23 @@ interface PersonData {
     var firstName: String?
     var secondName: String?
     var age: Int?
+    var socialInfos:List<SocialInfo>
 }
 
 interface SocialInfo {
     var network: String?
     var id: String?
+    var nickName:String?
 }
 
-interface IPerson : PersonJob, PersonData, SocialInfo
+interface IPerson : PersonJob, PersonData
 
 fun person(init: PersonBuilder.() -> Unit): IPerson {
     return PersonBuilder(init).build()
 }
 
 fun IPerson.toPersonString(): String {
-    return "firstName: $firstName, secondName: $secondName, age: $age, jobName: $jobName, jobAddress: $jobAddress, network: $network, id: $id"
+    var personString = "firstName: $firstName, secondName: $secondName, age: $age, jobName: $jobName, jobAddress: $jobAddress"
+    socialInfos.forEach { personString +="\n SOCIAL INFO: network: ${it.network} id: ${it.id} nickName: ${it.nickName}" }
+    return personString
 }

@@ -37,9 +37,18 @@ class BuilderActivity : BackActivity() {
                 jobAddress = "Saint-Petersburg, Russia"
             }
 
-            social {
-                network = "VK"
-                id = "347435"
+            socials {
+                social {
+                    network = "VK"
+                    id = "347435"
+                    nickName = "Rasalexman"
+                }
+                social {
+                    network = "Instagramm"
+                    id = "alexkillah"
+                    nickName = "Alexandr"
+                }
+
             }
         }
 

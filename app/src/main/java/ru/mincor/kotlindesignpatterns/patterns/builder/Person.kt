@@ -1,6 +1,6 @@
 package ru.mincor.kotlindesignpatterns.patterns.builder
 
-class Person private constructor(val name: String, val surname: String, val age: Int) {
+class Person private constructor(private val name: String, private val surname: String, private val age: Int) {
 
     private constructor(builder: Builder) : this(builder.name, builder.surname, builder.age)
 
