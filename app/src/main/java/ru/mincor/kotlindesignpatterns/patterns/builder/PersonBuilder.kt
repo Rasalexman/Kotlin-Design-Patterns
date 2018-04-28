@@ -1,4 +1,8 @@
-package ru.mincor.kotlindesignpatterns.patterns.Builder
+package ru.mincor.kotlindesignpatterns.patterns.builder
+
+/**
+ * The builder pattern is used to create complex objects with constituent parts that must be created in the same order or using a specific algorithm.
+ */
 
 class PersonBuilder() {
 

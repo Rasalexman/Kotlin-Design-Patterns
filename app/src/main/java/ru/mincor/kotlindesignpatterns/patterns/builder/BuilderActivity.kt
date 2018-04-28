@@ -1,4 +1,4 @@
-package ru.mincor.kotlindesignpatterns.patterns.Builder
+package ru.mincor.kotlindesignpatterns.patterns.builder
 
 import android.os.Bundle
 import ru.mincor.kotlindesignpatterns.activity.BackActivity

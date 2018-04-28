@@ -1,4 +1,4 @@
-package ru.mincor.kotlindesignpatterns.patterns.Builder
+package ru.mincor.kotlindesignpatterns.patterns.builder
 
 class Person private constructor(val name: String, val surname: String, val age: Int) {
 

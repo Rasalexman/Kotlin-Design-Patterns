@@ -7,10 +7,12 @@ import android.view.View
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 import android.content.Intent
-import ru.mincor.kotlindesignpatterns.patterns.Builder.BuilderActivity
+import ru.mincor.kotlindesignpatterns.patterns.builder.BuilderActivity
+import ru.mincor.kotlindesignpatterns.patterns.abstractfactory.AbstractFactoryActivity
 import ru.mincor.kotlindesignpatterns.patterns.decorator.DecoratorActivity
 import ru.mincor.kotlindesignpatterns.patterns.observer.ObserverActivity
 import ru.mincor.kotlindesignpatterns.patterns.strategy.StrategyActivity
+import ru.mincor.kotlindesignpatterns.patterns.visitor.VisitorActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -59,6 +61,22 @@ class MainActivity : AppCompatActivity() {
                 button("BUILDER") {
                     onClick {
                         startActivity(Intent(this@MainActivity, BuilderActivity::class.java))
+                    }
+                }.lparams(dip(120)) {
+                    topMargin = dip(16)
+                }
+
+                button("ABSTRACTFACTORY") {
+                    onClick {
+                        startActivity(Intent(this@MainActivity, AbstractFactoryActivity::class.java))
+                    }
+                }.lparams(dip(120)) {
+                    topMargin = dip(16)
+                }
+
+                button("VISITOR") {
+                    onClick {
+                        startActivity(Intent(this@MainActivity, VisitorActivity::class.java))
                     }
                 }.lparams(dip(120)) {
                     topMargin = dip(16)
