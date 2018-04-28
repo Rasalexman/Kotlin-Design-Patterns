@@ -17,9 +17,7 @@ class PersonBuilder() {
     fun job(init: PersonJob.() -> Unit) {
         jobHolder = object : PersonJob {
             override var jobName: String? = ""
-                set(value) { field = value?:field }
             override var jobAddress: String? = ""
-                set(value) { field = value?:field }
         }.apply(init)
     }
 
@@ -27,20 +25,15 @@ class PersonBuilder() {
         // You can put default values to create person data and if input value can be null it replace with default value
         personDataHolder = object : PersonData {
             override var firstName: String? = ""
-                set(value) { field = value?:field }
             override var secondName: String? = ""
-                set(value) { field = value?:field }
             override var age: Int? = 0
-                set(value) { field = value?:field }
         }.apply(init)
     }
 
     fun social(init: SocialInfo.() -> Unit) {
         socialInfoHolder = object : SocialInfo {
             override var network: String? = ""
-                set(value) { field = value?:field }
             override var id: String? = ""
-                set(value) { field = value?:field }
         }.apply(init)
     }
 
