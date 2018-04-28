@@ -8,14 +8,18 @@ class Person private constructor(val name: String, val surname: String, val age:
         fun create(init: Builder.() -> Unit) = Builder(init).build()
     }
 
+    override fun toString(): String {
+        return "name: $name, surname: $surname, age: $age"
+    }
+
     class Builder private constructor() {
 
         constructor(init: Builder.() -> Unit) : this() {
             init()
         }
 
-        var name: String = ""       // or you can use lateinit but not recomended
-        var surname: String = ""    // or you can use lateinit but not recomended
+        var name: String = ""       // or you can use lateinit but not i'm recommend to use this
+        var surname: String = ""    // or you can use lateinit but not i'm recommend to use this
         var age: Int = 0
 
         fun name(init: Builder.() -> String) = apply { name = init() }

@@ -9,19 +9,40 @@ class BuilderActivity : BackActivity() {
 
         title = "BUILDER PATTERN EXAMPLE"
 
-        Person.create {
+        val personStatic1 = Person.create {
             name { "Alexander" }
             surname { "Minkin" }
-            age { 28 }
+            age { 31 }
         }
+        println(personStatic1.toString())
 
         // OR
-
-        Person.create {
-            name = "Alexander"
+        val personStatic2 = Person.create {
+            name = "Vladimir"
             surname = "Minkin"
-            age = 28
+            age = 32
+        }
+        println(personStatic2.toString())
+
+        // OR DSL
+        val personDSL = person {
+            personData {
+                firstName = "Alexander"
+                secondName = "Minkin"
+                age = 31
+            }
+
+            job {
+                jobName = "FortGroup"
+                jobAddress = "Saint-Petersburg, Russia"
+            }
+
+            social {
+                network = "VK"
+                id = "347435"
+            }
         }
 
+        println(personDSL.toPersonString())
     }
 }
